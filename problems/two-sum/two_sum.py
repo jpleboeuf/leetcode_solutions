@@ -6,17 +6,17 @@ def two_sum(nums: List[int], target: int) -> List[int]:
     i = 0
     for ni in nums:
         j = 0
-        for nj in nums:
+        for nj in nums:  # for-else loop!
             if i == j:
-                continue
-            if ni + nj == target:
+                pass
+            elif ni + nj == target:
                 r = [i, j]
-                break
+                break  # break from inner loop, jump to break from outer loop
             j += 1
-        else:
-            i += 1
-            continue
-        break
+        else:          # when the current step of the inner loop is over,
+            i += 1     #  do some stuff,
+            continue   #  and continue with the next step of the outer loop.
+        break          # break from outer loop
     return r
 
 
