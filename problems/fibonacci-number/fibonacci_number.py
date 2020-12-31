@@ -17,14 +17,17 @@ class Solution:
         return fib(n)
 
 
-N = 2
-solution = Solution()
-print(solution.fib(N))
+def main():
 
-N = 3
-solution = Solution()
-print(solution.fib(N))
+    solution = Solution()
 
-N = 4
-solution = Solution()
-print(solution.fib(N))
+    for n in [
+                 2,  # Example 1
+                 3,  # Example 2
+                 4,  # Example 3
+                30,
+            ]:
+        print(f"n={n} ⇒ solution={solution.fib(n)}")
+
+if __name__ == '__main__':
+    main()
