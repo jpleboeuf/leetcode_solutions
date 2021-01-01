@@ -1,11 +1,14 @@
 from typing import List
+from typing import Final
 
 
 def fib(n: int) -> int:
-    f0: int = 0
-    f1: int = 1
+    # typing.Final not supported by pylint at this time
+    #  https://github.com/PyCQA/pylint/issues/3197
+    f0: Final[int] = 0  # pylint: disable=unsubscriptable-object
+    f1: Final[int] = 1  # pylint: disable=unsubscriptable-object
     f: List[int] = [f0, f1]
-    i = 2
+    i: int = 2
     while i <= n:
         f.append(f[i - 1] + f[i - 2])
         i += 1
