@@ -63,8 +63,18 @@ class Solution:
         return add_two_numbers(l1, l2)
 
 
-l1 = ListNode.from_list([2, 4, 3])
-l2 = ListNode.from_list([5, 6, 4])
-print(l1, l2)
-solution = Solution()
-print(solution.addTwoNumbers(l1, l2))
+def main():
+
+    solution = Solution()
+
+    for l1, l2 in [
+                ([2, 4, 3], [5, 6, 4]),
+                ([0], [0]),
+                ([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]),
+            ]:
+        ln1 = ListNode.from_list(l1)
+        ln2 = ListNode.from_list(l2)
+        print(f"ln1={ln1}, ln2={ln2} ⇒ solution={solution.addTwoNumbers(ln1, ln2)}")
+
+if __name__ == '__main__':
+    main()
