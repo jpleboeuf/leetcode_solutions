@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import List
 
 from pprint import pprint
@@ -6,7 +7,7 @@ from pprint import pprint
 # Definition for singly-linked list.
 class ListNode:
     
-    def __init__(self, val=0, next=None):
+    def __init__(self, val:int=0, next:ListNode=None):
         self.val = val
         self.next = next
 
