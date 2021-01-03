@@ -1,9 +1,11 @@
 from __future__ import annotations
+from typing import Type, TypeVar
 from typing import List
 
 from pprint import pprint
 
 
+ListNodeType = TypeVar('ListNodeType', bound='ListNode')
 # Definition for singly-linked list.
 class ListNode:
     
@@ -24,7 +26,8 @@ class ListNode:
         return s
 
 @classmethod
-def from_list(cls, l:List=[]):
+def from_list(cls:Type[ListNodeType], l:List=[]) -> ListNodeType:
+    # pylint: disable=not-callable
     if len(l) > 0:
         ln0 = cls(l[0])
         ln_prev = ln0
