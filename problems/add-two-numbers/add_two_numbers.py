@@ -2,8 +2,6 @@ from __future__ import annotations
 from typing import Type, TypeVar
 from typing import List
 
-from pprint import pprint
-
 
 ListNodeType = TypeVar('ListNodeType', bound='ListNode')
 # Definition for singly-linked list.
