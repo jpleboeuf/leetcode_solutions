@@ -25,7 +25,6 @@ class ListNode:
 
 @classmethod
 def from_list(cls, l:List=[]):
-    print(l)
     if len(l) > 0:
         ln0 = cls(l[0])
         ln_prev = ln0
