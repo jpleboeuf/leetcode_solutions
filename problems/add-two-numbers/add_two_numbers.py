@@ -41,23 +41,23 @@ def from_list(cls:Type[ListNodeType], l:List=[]) -> ListNodeType:
     return cnstrct
 ListNode.from_list = from_list
 
-
-def build_number_value(l: ListNode) -> int:
+def to_number(self:ListNode) -> int:
+    ln = self
     val_s = ""
-    ln = l
     val_s += str(ln.val)
     while ln.next is not None:
         ln = ln.next
         val_s += str(ln.val)
     val = int(val_s[::-1])
     return val
+ListNode.to_number = to_number
 
 
-def add_two_numbers(l1: ListNode, l2: ListNode) -> ListNode:
-    val1 = build_number_value(l1)
-    val2 = build_number_value(l2)
+def add_two_numbers(ln1: ListNode, ln2: ListNode) -> ListNode:
+    val1 = ln1.to_number()
+    val2 = ln2.to_number()
     val = val1 + val2
-    val_lst = [n for n in str(val)[::-1]]
+    val_lst = [d for d in str(val)[::-1]]
     return ListNode.from_list(val_lst)
 
 
