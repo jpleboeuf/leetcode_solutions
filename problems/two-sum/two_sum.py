@@ -4,11 +4,9 @@ from typing import List
 def two_sum(nums: List[int], target: int) -> List[int]:
     r: int = []
     for i, ni in enumerate(nums):
-        for j, nj in enumerate(nums):  # for-else loop!
-            if i == j:
-                pass
-            elif ni + nj == target:
-                r = [i, j]
+        for j, nj in enumerate(nums[(ii:=i+1):]):  # for-else loop!
+            if ni + nj == target:
+                r = [i, ii+j]
                 break  # break from inner loop, jump to break from outer loop
         else:          # when the current step of the inner loop is over,
             continue   #  continue with the next step of the outer loop
