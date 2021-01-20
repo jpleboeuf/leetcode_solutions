@@ -11,7 +11,7 @@ def two_sum(nums: List[int], target: int) -> List[int]:
                 r = [i, j]
                 break  # break from inner loop, jump to break from outer loop
         else:          # when the current step of the inner loop is over,
-            continue   #  continue with the next step of the outer loop.
+            continue   #  continue with the next step of the outer loop
         break          # break from outer loop
     return r
 
