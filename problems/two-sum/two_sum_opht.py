@@ -6,12 +6,10 @@ def two_sum(nums: List[int], target: int) -> List[int]:
     r: int = []
     nums_pos: Dict[int, int] = {}
     for i, ni in enumerate(nums):
-        nums_pos[ni] = i
-    for i, ni in enumerate(nums):
-        if (nj := target - ni) in nums_pos.keys()\
-         and (j := nums_pos[nj]) != i:
+        if (j := nums_pos.get(nj := target - ni)) is not None:  # pylint: disable=unused-variable
             r = [i, j]
             break
+        nums_pos[ni] = i
     return r
 
 
