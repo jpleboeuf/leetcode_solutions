@@ -39,24 +39,22 @@ def from_list(cls:Type[ListNodeType], l:List=[]) -> ListNodeType:
     return cnstrct
 ListNode.from_list = from_list
 
-def to_number(self:ListNode) -> int:
-    ln = self
-    val_s = ""
-    val_s += str(ln.val)
-    while ln.next is not None:
-        ln = ln.next
-        val_s += str(ln.val)
-    val = int(val_s[::-1])
-    return val
-ListNode.to_number = to_number
-
 
 def add_two_numbers(ln1:ListNode, ln2:ListNode) -> ListNode:
-    val1 = ln1.to_number()
-    val2 = ln2.to_number()
-    val = val1 + val2
-    val_lst = [d for d in str(val)[::-1]]
-    return ListNode.from_list(val_lst)
+    ln_cur = lnr = ListNode()
+    carry = 0
+    while ln1 or ln2 or carry:
+        dv1 = dv2 = 0
+        if ln1:
+            dv1 = ln1.val
+            ln1 = ln1.next
+        if ln2:
+            dv2 = ln2.val
+            ln2 = ln2.next
+        carry, dv = divmod(dv1 + dv2 + carry, 10)
+        ln_cur.next = ListNode(dv)
+        ln_cur = ln_cur.next
+    return lnr.next
 
 
 class Solution:
@@ -69,9 +67,12 @@ def main():
     solution = Solution()
 
     for l1, l2 in [
-                ([2, 4, 3], [5, 6, 4]),
-                ([0], [0]),
-                ([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]),
+                ([2, 4, 3], [5, 6, 4]),                 # Example 1
+                ([0], [0]),                             # Example 2
+                ([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]),  # Example 3
+                ([0, 1], [0, 1, 2]),                    # Supplementary test case 1
+                ([], [0, 1]),                           # Supplementary test case 2
+                ([9, 9], [1]),                          # Supplementary test case 3
             ]:
         ln1 = ListNode.from_list(l1)
         ln2 = ListNode.from_list(l2)
