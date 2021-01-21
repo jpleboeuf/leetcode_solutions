@@ -51,7 +51,7 @@ def to_number(self:ListNode) -> int:
 ListNode.to_number = to_number
 
 
-def add_two_numbers(ln1: ListNode, ln2: ListNode) -> ListNode:
+def add_two_numbers(ln1:ListNode, ln2:ListNode) -> ListNode:
     val1 = ln1.to_number()
     val2 = ln2.to_number()
     val = val1 + val2
@@ -60,7 +60,7 @@ def add_two_numbers(ln1: ListNode, ln2: ListNode) -> ListNode:
 
 
 class Solution:
-    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+    def addTwoNumbers(self, l1:ListNode, l2:ListNode) -> ListNode:
         return add_two_numbers(l1, l2)
 
 
