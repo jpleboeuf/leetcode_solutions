@@ -1,16 +1,17 @@
 from typing import List
+from typing import Dict
 
 
 def two_sum(nums: List[int], target: int) -> List[int]:
     r: int = []
+    nums_pos: Dict[int, int] = {}
     for i, ni in enumerate(nums):
-        for j, nj in enumerate(nums[(ii:=i+1):]):  # for-else loop!
-            if ni + nj == target:
-                r = [i, ii+j]
-                break  # break from inner loop, jump to break from outer loop
-        else:          # when the current step of the inner loop is over,
-            continue   #  continue with the next step of the outer loop
-        break          # break from outer loop
+        nums_pos[ni] = i
+    for i, ni in enumerate(nums):
+        if (nj := target - ni) in nums_pos.keys()\
+         and (j := nums_pos[nj]) != i:
+            r = [i, j]
+            break
     return r
 
 
