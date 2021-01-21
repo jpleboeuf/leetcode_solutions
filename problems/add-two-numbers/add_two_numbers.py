@@ -69,9 +69,9 @@ def main():
     solution = Solution()
 
     for l1, l2 in [
-                ([2, 4, 3], [5, 6, 4]),
-                ([0], [0]),
-                ([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]),
+                ([2, 4, 3], [5, 6, 4]),                 # Example 1
+                ([0], [0]),                             # Example 2
+                ([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]),  # Example 3
             ]:
         ln1 = ListNode.from_list(l1)
         ln2 = ListNode.from_list(l2)
