@@ -14,7 +14,7 @@ class ListNode:
     def __str__(self):
         ln = self
         s = ""
-        s = "["
+        s += "["
         s += str(ln.val)
         while ln.next is not None:
             s += "→ "
