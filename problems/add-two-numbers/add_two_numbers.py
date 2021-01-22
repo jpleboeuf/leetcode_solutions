@@ -17,6 +17,9 @@ class ListNode:
         s += "["
         s += str(ln.val)
         while ln.next is not None:
+            if ln.next is ln:
+                s += "… "  # Circular List detected!
+                break
             s += "→ "
             ln = ln.next
             s += str(ln.val)
