@@ -17,6 +17,9 @@ class ListNode:
         s += "["
         s += str(ln.val)
         while ln.next is not None:
+            if ln.next is ln:
+                s += "… "  # Circular List detected!
+                break
             s += "→ "
             ln = ln.next
             s += str(ln.val)
@@ -39,7 +42,7 @@ def from_list(cls:Type[ListNodeType], l:List=[]) -> ListNodeType:
     return cnstrct
 ListNode.from_list = from_list
 
-def to_number(self:ListNode) -> int:
+def to_int(self:ListNode) -> int:
     ln = self
     val_s = ""
     val_s += str(ln.val)
@@ -48,12 +51,12 @@ def to_number(self:ListNode) -> int:
         val_s += str(ln.val)
     val = int(val_s[::-1])
     return val
-ListNode.to_number = to_number
+ListNode.to_int = to_int
 
 
 def add_two_numbers(ln1:ListNode, ln2:ListNode) -> ListNode:
-    val1 = ln1.to_number()
-    val2 = ln2.to_number()
+    val1 = ln1.to_int()
+    val2 = ln2.to_int()
     val = val1 + val2
     val_lst = [d for d in str(val)[::-1]]
     return ListNode.from_list(val_lst)

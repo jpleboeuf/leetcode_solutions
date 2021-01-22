@@ -42,17 +42,28 @@ def from_list(cls:Type[ListNodeType], l:List=[]) -> ListNodeType:
     return cnstrct
 ListNode.from_list = from_list
 
+@classmethod
+def from_int(cls:Type[ListNodeType], n:int=0) -> ListNodeType:
+    # pylint: disable=not-callable
+    div, mod = divmod(n, 10)
+    ln_unit = cls(mod)
+    ln_prev = ln_unit
+    while div != 0:
+        div, mod = divmod(div, 10)
+        ln = cls(mod)
+        ln_prev.next = ln
+        ln_prev = ln
+    cnstrct = ln_unit
+    return cnstrct
+ListNode.from_int = from_int
+
+def to_int(self:ListNode) -> int:
+    return self.val + (10 * to_int(self.next) if self.next else 0)
+ListNode.to_int = to_int
+
 
 def add_two_numbers(ln1:ListNode, ln2:ListNode) -> ListNode:
-    ln_addends = ln1, ln2
-    ln_cur = lnr = ListNode()
-    carry = 0
-    while ln_addends or carry:
-        carry, dv = divmod(sum([a.val for a in ln_addends]) + carry, 10)
-        ln_addends = [a.next for a in ln_addends if a.next]
-        ln_cur.next = ListNode(dv)
-        ln_cur = ln_cur.next
-    return lnr.next
+    return ListNode.from_int(ln1.to_int() + ln2.to_int())
 
 
 class Solution:
