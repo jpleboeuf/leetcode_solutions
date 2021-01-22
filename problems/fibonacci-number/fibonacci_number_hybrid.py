@@ -5,14 +5,18 @@ from typing import Final
 def fib(n: int) -> int:
     # typing.Final not supported by pylint at this time
     #  https://github.com/PyCQA/pylint/issues/3197
-    f0: Final[int] = 0  # pylint: disable=unsubscriptable-object
-    f1: Final[int] = 1  # pylint: disable=unsubscriptable-object
-    f: List[int] = [f0, f1]
-    i: int = 2
-    while i <= n:
-        f.append(f[i - 1] + f[i - 2])
-        i += 1
-    return f[n]
+    # Also, using function attributes to emulate static variables:
+    if not hasattr(fib, "f"):
+        fib.f0: Final[int] = 0  # pylint: disable=unsubscriptable-object
+        fib.f1: Final[int] = 1  # pylint: disable=unsubscriptable-object
+        fib.f: List[int] = [fib.f0, fib.f1]
+    if n == 0:
+        return fib.f0
+    elif n == 1:
+        return fib.f1
+    if n >= len(fib.f):
+        fib.f.append(fib(n - 1) + fib(n - 2))
+    return fib.f[n]
 
 
 class Solution:
