@@ -44,17 +44,12 @@ ListNode.from_list = from_list
 
 
 def add_two_numbers(ln1:ListNode, ln2:ListNode) -> ListNode:
+    ln_addends = ln1, ln2
     ln_cur = lnr = ListNode()
     carry = 0
-    while ln1 or ln2 or carry:
-        dv1 = dv2 = 0
-        if ln1:
-            dv1 = ln1.val
-            ln1 = ln1.next
-        if ln2:
-            dv2 = ln2.val
-            ln2 = ln2.next
-        carry, dv = divmod(dv1 + dv2 + carry, 10)
+    while ln_addends or carry:
+        carry, dv = divmod(sum([a.val for a in ln_addends]) + carry, 10)
+        ln_addends = [a.next for a in ln_addends if a.next]
         ln_cur.next = ListNode(dv)
         ln_cur = ln_cur.next
     return lnr.next
