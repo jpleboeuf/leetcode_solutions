@@ -13,7 +13,7 @@ def fib(n: int) -> int:
         return fib.f0
     elif n == 1:
         return fib.f1
-    return fib(n-1) + fib(n-2)
+    return fib(n - 1) + fib(n - 2)
 
 
 class Solution:
