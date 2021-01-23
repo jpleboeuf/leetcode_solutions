@@ -3,10 +3,10 @@ from typing import Final
 
 
 def fib(n: int) -> int:
-    # typing.Final not supported by pylint at this time
-    #  https://github.com/PyCQA/pylint/issues/3197
-    # Also, using function attributes to emulate static variables:
+    # Using function attributes to emulate static variables:
     if not (hasattr(fib, "f0")):
+        # typing.Final not supported by pylint at this time
+        #  https://github.com/PyCQA/pylint/issues/3197
         fib.f0: Final[int] = 0  # pylint: disable=unsubscriptable-object
         fib.f1: Final[int] = 1  # pylint: disable=unsubscriptable-object
     if n == 0:
