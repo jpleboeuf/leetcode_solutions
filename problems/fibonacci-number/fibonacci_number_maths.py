@@ -1,18 +1,23 @@
-from typing import List
 from typing import Final
 
 
 def fib(n: int) -> int:
-    if n == 0:
-        return fib.f0
-    elif n == 1:
-        return fib.f1
-    return fib(n - 1) + fib(n - 2)
-# Using function attributes to emulate static variables:
-# typing.Final not supported by pylint at this time
-#  https://github.com/PyCQA/pylint/issues/3197
-fib.f0: Final[int] = 0  # pylint: disable=unsubscriptable-object
-fib.f1: Final[int] = 1  # pylint: disable=unsubscriptable-object
+    """Return the Fibonacci number for n.
+    This version uses Binet's formula,
+     whose value for n is computed by rounding.
+    Binet's formula:
+     Fₙ = ( ɸⁿ - ψⁿ ) / √5
+      where:
+       ɸ = ( 1 + √5 ) / 2  (golden ratio)
+       ψ = ( 1 - √5 ) / 2
+    Since | ψⁿ / √5 | < ½ for all n ≥ 0,
+     Fₙ is the closest integer to ɸⁿ / √5.
+    Therefore Fₙ = [ ɸⁿ / √5 ].
+    """
+    # typing.Final not supported by pylint at this time
+    #  https://github.com/PyCQA/pylint/issues/3197
+    phi: Final[float] = ( 1 + 5 ** 0.5 ) / 2  # pylint: disable=unsubscriptable-object
+    return int( round( phi ** n / 5 ** 0.5 ) )
 
 
 class Solution:
