@@ -53,7 +53,7 @@ def fib(n: int) -> int:
             [1, 0],
         ]
     if n <= 1:
-        return F0[n][-1]
+        return F0[1 - n][-1]
     Aexpnmin1 = matrix22_pow(A, n - 1)
     """
     Fn = Aexpnmin1[0][0] * F0[0][0] + Aexpnmin1[0][-1] * F0[1][-1]
@@ -73,6 +73,8 @@ def main():
     solution = Solution()
 
     for n in [
+                 0,
+                 1,
                  2,  # Example 1
                  3,  # Example 2
                  4,  # Example 3
