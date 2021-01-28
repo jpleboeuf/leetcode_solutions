@@ -1,28 +1,28 @@
 from typing import Final
 
 
-def matrix22_pow(M: list, n: int) -> list:
+def matrix22_pow(mat_m: list, n: int) -> list:
     """
     Return a new 2×2 matrix,
-     result of the exponentiation of the 2×2 matrix M by n. 
+     result of the exponentiation of the 2×2 matrix mat_m by n. 
     """
     if n <= 1:
-        return M
-    Msq = matrix22_mul(M, M)
+        return mat_m
+    mat_m_sq = matrix22_mul(mat_m, mat_m)
     if n % 2 == 0:  # n is even
-        return matrix22_pow(Msq, n // 2)
+        return matrix22_pow(mat_m_sq, n // 2)
     else:           # n is odd
-        return matrix22_mul(M, matrix22_pow(Msq, (n - 1) // 2))
+        return matrix22_mul(mat_m, matrix22_pow(mat_m_sq, (n - 1) // 2))
 
-def matrix22_mul(M1: list, M2: list) -> list:
+def matrix22_mul(mat_m1: list, mat_m2: list) -> list:
     """
     Return a new 2×2 matrix,
-     result of the multiplication of the two 2×2 matrices M1 and M2.
+     result of the multiplication of the two 2×2 matrices mat_m1 and mat_m2.
     """
-    mm_00 = M1[0][0] * M2[0][0] + M1[0][1] * M2[1][0]
-    mm_01 = M1[0][0] * M2[0][1] + M1[0][1] * M2[1][1]
-    mm_10 = M1[1][0] * M2[0][0] + M1[1][1] * M2[1][0]
-    mm_11 = M1[1][0] * M2[0][1] + M1[1][1] * M2[1][1]
+    mm_00 = mat_m1[0][0] * mat_m2[0][0] + mat_m1[0][1] * mat_m2[1][0]
+    mm_01 = mat_m1[0][0] * mat_m2[0][1] + mat_m1[0][1] * mat_m2[1][1]
+    mm_10 = mat_m1[1][0] * mat_m2[0][0] + mat_m1[1][1] * mat_m2[1][0]
+    mm_11 = mat_m1[1][0] * mat_m2[0][1] + mat_m1[1][1] * mat_m2[1][1]
     return [
             [ mm_00, mm_01 ],
             [ mm_10, mm_11 ],
@@ -44,23 +44,23 @@ def fib(n: int) -> int:
      also denoted F⃗ₙ = Aⁿ F⃗₀.
     """
     # pylint: enable=anomalous-backslash-in-string
-    F0 = [
+    vec_f0 = [
             [1],
             [0],
         ]
-    A = [
+    mat_a = [
             [1, 1],
             [1, 0],
         ]
     if n <= 1:
-        return F0[1 - n][-1]
-    Aexpnmin1 = matrix22_pow(A, n - 1)
+        return vec_f0[1 - n][-1]
+    mat_a_exp_nmin1 = matrix22_pow(mat_a, n - 1)
     """
-    Fn = Aexpnmin1[0][0] * F0[0][0] + Aexpnmin1[0][-1] * F0[1][-1]
-    Since F0[0][0] = 1 and F0[1][-1] = 0,
-     we have Fn = Aexpnmin1[0][0].
+    vec_fn = mat_a_exp_nmin1[0][0] * vec_f0[0][0] + mat_a_exp_nmin1[0][-1] * vec_f0[1][-1]
+    Since vec_f0[0][0] = 1 and vec_f0[1][-1] = 0,
+     we have vec_fn = mat_a_exp_nmin1[0][0].
     """
-    return Aexpnmin1[0][0]
+    return mat_a_exp_nmin1[0][0]
 
 
 class Solution:
