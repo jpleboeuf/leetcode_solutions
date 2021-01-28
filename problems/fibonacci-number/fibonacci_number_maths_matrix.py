@@ -7,7 +7,7 @@ def matrix22_pow(mat_m: list, n: int) -> list:
      result of the exponentiation of the 2×2 matrix mat_m by n. 
     """
     if n <= 1:
-        return mat_m
+        return mat_m.copy()
     mat_m_sq = matrix22_mul(mat_m, mat_m)
     if n % 2 == 0:  # n is even
         return matrix22_pow(mat_m_sq, n // 2)
