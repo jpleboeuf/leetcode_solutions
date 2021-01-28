@@ -1,20 +1,28 @@
 from typing import Final
+from typing import Tuple
+from copy import deepcopy
 
 
-def matrix22_pow(mat_m: list, n: int) -> list:
+def matrix22_pow(
+            mat_m: Tuple[Tuple[int, int], Tuple[int, int]],
+            n: int
+        ) -> Tuple[Tuple[int, int], Tuple[int, int]]:
     """
     Return a new 2×2 matrix,
      result of the exponentiation of the 2×2 matrix mat_m by n. 
     """
     if n <= 1:
-        return mat_m.copy()
+        return deepcopy(mat_m)
     mat_m_sq = matrix22_mul(mat_m, mat_m)
     if n % 2 == 0:  # n is even
         return matrix22_pow(mat_m_sq, n // 2)
     else:           # n is odd
         return matrix22_mul(mat_m, matrix22_pow(mat_m_sq, (n - 1) // 2))
 
-def matrix22_mul(mat_m1: list, mat_m2: list) -> list:
+def matrix22_mul(
+            mat_m1: Tuple[Tuple[int, int], Tuple[int, int]],
+            mat_m2: Tuple[Tuple[int, int], Tuple[int, int]]
+        ) -> Tuple[Tuple[int, int], Tuple[int, int]]:
     """
     Return a new 2×2 matrix,
      result of the multiplication of the two 2×2 matrices mat_m1 and mat_m2.
@@ -23,10 +31,10 @@ def matrix22_mul(mat_m1: list, mat_m2: list) -> list:
     mm_01 = mat_m1[0][0] * mat_m2[0][1] + mat_m1[0][1] * mat_m2[1][1]
     mm_10 = mat_m1[1][0] * mat_m2[0][0] + mat_m1[1][1] * mat_m2[1][0]
     mm_11 = mat_m1[1][0] * mat_m2[0][1] + mat_m1[1][1] * mat_m2[1][1]
-    return [
-            [ mm_00, mm_01 ],
-            [ mm_10, mm_11 ],
-        ]
+    return (
+            ( mm_00, mm_01 ),
+            ( mm_10, mm_11 ),
+        )
 
 
 def fib(n: int) -> int:
@@ -44,14 +52,14 @@ def fib(n: int) -> int:
      also denoted F⃗ₙ = Aⁿ F⃗₀.
     """
     # pylint: enable=anomalous-backslash-in-string
-    vec_f0 = [
-            [1],
-            [0],
-        ]
-    mat_a = [
-            [1, 1],
-            [1, 0],
-        ]
+    vec_f0: Tuple[Tuple[int], Tuple[int]] = (
+            (1,),
+            (0,),
+        )
+    mat_a: Tuple[Tuple[int, int], Tuple[int, int]] = (
+            (1, 1),
+            (1, 0),
+        )
     if n <= 1:
         return vec_f0[1 - n][-1]
     mat_a_exp_nmin1 = matrix22_pow(mat_a, n - 1)
