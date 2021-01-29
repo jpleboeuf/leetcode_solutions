@@ -1,18 +1,19 @@
 from typing import List
-from typing import Final
 
 
 def fib(n: int) -> int:
-    # typing.Final not supported by pylint at this time
-    #  https://github.com/PyCQA/pylint/issues/3197
-    f0: Final[int] = 0  # pylint: disable=unsubscriptable-object
-    f1: Final[int] = 1  # pylint: disable=unsubscriptable-object
-    f: List[int] = [f0, f1]
-    i: int = 2
-    while i <= n:
-        f.append(f[i - 1] + f[i - 2])
-        i += 1
-    return f[n]
+    if n <= 1:
+        return n
+    k: int = 2
+    f_kmin2: int = 0
+    f_kmin1: int = 1
+    f_k: int
+    while k <= n:
+        f_k = f_kmin1 + f_kmin2
+        k += 1
+        f_kmin2 = f_kmin1
+        f_kmin1 = f_k
+    return f_k
 
 
 class Solution:
