@@ -1,3 +1,4 @@
+from typing import List
 from typing import Final
 
 
@@ -6,7 +7,14 @@ def fib(n: int) -> int:
         return fib.f0
     elif n == 1:
         return fib.f1
-    return fib(n - 1) + fib(n - 2)
+    fib.f: List[int] = [None] * (n + 1)
+    fib.f[0] = fib.f0
+    fib.f[1] = fib.f1
+    def mem(n: int) -> int:
+        if fib.f[n] is None:
+            fib.f[n] = mem(n - 1) + mem(n - 2)
+        return fib.f[n]
+    return mem(n)
 # Using function attributes to emulate static variables:
 # typing.Final not supported by pylint at this time
 #  https://github.com/PyCQA/pylint/issues/3197

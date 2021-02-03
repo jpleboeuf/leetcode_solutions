@@ -6,7 +6,16 @@ def fib(n: int) -> int:
         return fib.f0
     elif n == 1:
         return fib.f1
-    return fib(n - 1) + fib(n - 2)
+    k: int = 2
+    f_kmin2: int = fib.f0
+    f_kmin1: int = fib.f1
+    f_k: int
+    while k <= n:
+        f_k = f_kmin1 + f_kmin2
+        k += 1
+        f_kmin2 = f_kmin1
+        f_kmin1 = f_k
+    return f_k
 # Using function attributes to emulate static variables:
 # typing.Final not supported by pylint at this time
 #  https://github.com/PyCQA/pylint/issues/3197
