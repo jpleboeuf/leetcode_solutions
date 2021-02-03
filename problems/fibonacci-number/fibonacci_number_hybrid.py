@@ -26,7 +26,6 @@ def static_var(*vars_dec):
             exec(var_dec_co)
             # --- Second,
             #  retrieve the name of the newly created variable.
-            # @todo For now (1 static), it is the only attribute available.
             var_name = list(locals()['__annotations__'])[var_dec_idx]
             # --- Finally,
             #  add thid newly created variable
