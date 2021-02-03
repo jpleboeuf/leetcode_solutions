@@ -3,7 +3,7 @@ from typing import Final
 import sys
 
 
-def static_var(var_dec):
+def static_var(*vars_dec):
     def static_var_decorator(func):
         # In the local scope,
         #  the decorated function is known as `func`.
@@ -14,33 +14,38 @@ def static_var(var_dec):
         # For that purpose, get the current frame object,
         #  retrieve the locals, and add the reference.
         sys._getframe().f_locals[func.__name__] = func
-        # --- First,
-        #  declare the future (simulated) static variable
-        #  so that it ends in the locals.
-        # For speed, compile the source code beforehand into a code object.
-        var_dec_co = compile(var_dec, '', 'exec')
-        exec(var_dec_co)
-        # --- Second,
-        #  retrieve the name of the newly created variable.
-        # @todo For now (1 static), it is the only attribute available.
-        var_name = list(locals()['__annotations__'])[0]
-        # --- Finally,
-        #  add thid newly created variable
-        #  as an attribute of the decorated function.
-        setattr(func, var_name, locals()[var_name])
+        for var_dec_idx, var_dec in enumerate(vars_dec):
+            # Warning: just a proof-of-concept‼
+            #  For the code to be bulleproof,
+            #  some sanity check of each variable declaration should be done!
+            # --- First,
+            #  declare the future (simulated) static variable
+            #  so that it ends in the locals.
+            # For speed, compile the source code beforehand into a code object.
+            var_dec_co = compile(var_dec, '', 'exec')
+            exec(var_dec_co)
+            # --- Second,
+            #  retrieve the name of the newly created variable.
+            # @todo For now (1 static), it is the only attribute available.
+            var_name = list(locals()['__annotations__'])[var_dec_idx]
+            # --- Finally,
+            #  add thid newly created variable
+            #  as an attribute of the decorated function.
+            setattr(func, var_name, locals()[var_name])
         return func
     return static_var_decorator
 
 
 # Using function attributes to emulate static variables,
 #  implemented through a decorator.
-# For each static-like variable used by the function,
-#  the static var decorator has to be applied.
-# This applicatiom has to be done in reverse order
-#  of the order of declaration of the static-like vars.
-@static_var('f: List[int] = [fib.f0, fib.f1]')
-@static_var('f1: Final[int] = 1')
-@static_var('f0: Final[int] = 0')
+# Each static-like variable used by the function
+#  has to be declared in a string
+#  and passed as an argument of the static var decorator.
+@static_var(
+    'f0: Final[int] = 0',
+    'f1: Final[int] = 1',
+    'f: List[int] = [fib.f0, fib.f1]'
+)
 def fib(n: int) -> int:
     if n == 0:
         return fib.f0
