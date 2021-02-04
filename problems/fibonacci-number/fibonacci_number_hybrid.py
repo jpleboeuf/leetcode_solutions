@@ -46,10 +46,6 @@ def static_var(*vars_dec):
     'f: List[int] = [fib.f0, fib.f1]'
 )
 def fib(n: int) -> int:
-    if n == 0:
-        return fib.f0
-    elif n == 1:
-        return fib.f1
     if n >= len(fib.f):
         fib.f.append(fib(n - 1) + fib(n - 2))
     return fib.f[n]
