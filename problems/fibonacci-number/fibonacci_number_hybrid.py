@@ -1,10 +1,14 @@
 from typing import List
 from typing import Final
+from typing import Callable, Any, TypeVar
 import sys
 
 
-def static_var(*vars_dec):
-    def static_var_decorator(func):
+F = TypeVar('F', bound=Callable[..., Any])
+
+
+def static_var(*vars_dec: str) -> Callable[[F], F]:
+    def static_var_decorator(func: F) -> F:
         # In the local scope,
         #  the decorated function is known as `func`.
         # To be able to have static variables initialized
@@ -26,7 +30,7 @@ def static_var(*vars_dec):
             exec(var_dec_co)
             # --- Second,
             #  retrieve the name of the newly created variable.
-            var_name = list(locals()['__annotations__'])[var_dec_idx]
+            var_name: str = list(locals()['__annotations__'])[var_dec_idx]
             # --- Finally,
             #  add thid newly created variable
             #  as an attribute of the decorated function.
