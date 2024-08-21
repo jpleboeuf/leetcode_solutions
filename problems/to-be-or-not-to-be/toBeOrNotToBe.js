@@ -3,8 +3,8 @@
  * @return {Object}
  */
 const expect = (val) => ({
-  toBe: (otherVal) => val === otherVal ? true : (function(){throw "Not Equal"}()),
-  notToBe: (otherVal) => val !== otherVal ? true : (function(){throw "Equal"}()),
+  toBe: (otherVal) => val === otherVal ? true : (() => {throw "Not Equal"})(),
+  notToBe: (otherVal) => val !== otherVal ? true : (() => {throw "Equal"})(),
 });
 
 const assert = require('node:assert').strict;
