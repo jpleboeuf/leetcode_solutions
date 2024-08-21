@@ -2,8 +2,13 @@
  * @param {integer} init
  * @return { increment: Function, decrement: Function, reset: Function }
  */
-var createCounter = function(init) {
-    
+const createCounter = (init) => {
+  let counter = init;
+  return ({
+    increment: () => ++counter,
+    decrement: () => --counter,
+    reset: () => counter = init,
+  });
 };
 
 const assert = require('node:assert').strict;
