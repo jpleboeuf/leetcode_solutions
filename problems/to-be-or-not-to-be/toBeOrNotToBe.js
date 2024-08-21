@@ -2,9 +2,10 @@
  * @param {string} val
  * @return {Object}
  */
-var expect = function(val) {
-    
-};
+const expect = (val) => ({
+  toBe: (otherVal) => val === otherVal ? true : (function(){throw "Not Equal"}()),
+  notToBe: (otherVal) => val !== otherVal ? true : (function(){throw "Equal"}()),
+});
 
 const assert = require('node:assert').strict;
 
