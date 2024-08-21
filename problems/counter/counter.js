@@ -8,9 +8,16 @@ var createCounter = function(n) {
   };
 };
 
-/** 
-* const counter = createCounter(10)
-* counter() // 10
-* counter() // 11
-* counter() // 12
-*/
+const assert = require('node:assert').strict;
+
+const counter1 = createCounter(10);
+assert.equal(counter1(), 10);
+assert.equal(counter1(), 11);
+assert.equal(counter1(), 12);
+
+const counter2 = createCounter(-2);
+assert.equal(counter2(), -2);
+assert.equal(counter2(), -1);
+assert.equal(counter2(), 0);
+assert.equal(counter2(), 1);
+assert.equal(counter2(), 2);
