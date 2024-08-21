@@ -1,12 +1,7 @@
 /**
  * @return {Function}
  */
-var createHelloWorld = function() {
-    
-  return function(...args) {
-      return "Hello World";
-  }
-};
+const createHelloWorld = () => (...args) => "Hello World";
 
 const assert = require('node:assert').strict;
 
