@@ -2,11 +2,7 @@
  * @param {number} n
  * @return {Function} counter
  */
-var createCounter = function(n) {
-  return function() {
-      return n++;
-  };
-};
+const createCounter = (n) => () => n++;
 
 const assert = require('node:assert').strict;
 
