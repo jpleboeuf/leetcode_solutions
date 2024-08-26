@@ -9,4 +9,4 @@ INSERT INTO Products (product_id, low_fats, recyclable) VALUES ('4', 'N', 'N');
 # Write your MySQL query statement below
 SELECT p.product_id
 FROM Products p
-WHERE p.low_fats = 'Y' AND p.recyclable = 'Y'
+WHERE p.low_fats = 'Y' AND p.recyclable = 'Y';
