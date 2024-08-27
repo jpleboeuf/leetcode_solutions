@@ -1,10 +1,11 @@
-Create table If Not Exists Customer (id int, name varchar(25), referee_id int)
-Truncate table Customer
-insert into Customer (id, name, referee_id) values ('1', 'Will', 'None')
-insert into Customer (id, name, referee_id) values ('2', 'Jane', 'None')
-insert into Customer (id, name, referee_id) values ('3', 'Alex', '2')
-insert into Customer (id, name, referee_id) values ('4', 'Bill', 'None')
-insert into Customer (id, name, referee_id) values ('5', 'Zack', '1')
-insert into Customer (id, name, referee_id) values ('6', 'Mark', '2')
+CREATE TABLE IF NOT EXISTS Customer (id INT, name VARCHAR(25), referee_id INT);
+TRUNCATE TABLE Customer;
+INSERT INTO Customer (id, name, referee_id) VALUES
+  ROW('1', 'Will', 'None'),
+  ROW('2', 'Jane', 'None'),
+  ROW('3', 'Alex', '2'),
+  ROW('4', 'Bill', 'None'),
+  ROW('5', 'Zack', '1'),
+  ROW('6', 'Mark', '2');
 
 # Write your MySQL query statement below
