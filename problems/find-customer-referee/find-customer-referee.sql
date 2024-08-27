@@ -9,3 +9,6 @@ INSERT INTO Customer (id, name, referee_id) VALUES
   ROW('6', 'Mark', '2');
 
 # Write your MySQL query statement below
+SELECT c.name
+FROM Customer c
+WHERE NOT c.referee_id <=> 2;
