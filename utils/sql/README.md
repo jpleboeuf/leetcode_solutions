@@ -2,7 +2,7 @@
 
 - [`mysqlsh` — The MySQL Shell](https://dev.mysql.com/doc/mysql-shell/8.0/en/mysqlsh.html), included with MySQL.
 - Bash (on Windows, [Git for Windows](https://gitforwindows.org/) provides Git Bash).
-- [jq]](https://jqlang.github.io/jq/).
+- [jq](https://jqlang.github.io/jq/).
 
 `mysqlsl`, `bash`, and `jq` need to be in the `PATH`.
 
