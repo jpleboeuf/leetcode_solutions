@@ -15,4 +15,7 @@ mysqlsh --user=jpl --database=leetcode --sql --table --execute="SELECT * FROM So
 
 # Compare the solution to the example:
 echo Next line will be display true if the solution matches the example:
-mysqlsh --user=jpl --database=leetcode --sql --json --execute="CHECKSUM TABLE Example1, Solution;" | jq --slurp "last.rows | map(select((.Table == \"leetcode.example1\" or .Table ==\"leetcode.solution\")).Checksum) | .[0] as \$firstVal | all(.[]; . == \$firstVal)"
+mysqlsh --user=jpl --database=leetcode --sql --json --execute="CHECKSUM TABLE Example1, Solution;"\
+ | jq --slurp "last.rows
+    | map(select((.Table == \"leetcode.example1\" or .Table ==\"leetcode.solution\")).Checksum)
+    | .[0] as \$firstVal | all(.[]; . == \$firstVal)"
