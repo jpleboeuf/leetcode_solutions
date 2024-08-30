@@ -1,7 +1,7 @@
 # Delete all tables from the database used for LeetCode:
 mysqlsh --user=jpl --database=leetcode --sql --table --file=../../utils/sql/drop-all-tables.sql
 
-# Create the SQL schema for the problem, and display the data (table names separated by comma as parameters):
+# Create the SQL schema for the problem, and display the data (table names separated by comma as only parameter of this script):
 mysqlsh --user=jpl --database=leetcode --sql --table --file=sql-schema.sql
 mysqlsh --user=jpl --database=leetcode --sql --table --execute="SELECT * FROM "$1";"
 
@@ -14,7 +14,7 @@ mysqlsh --user=jpl --database=leetcode --sql --table --file=sql-solution.sql
 mysqlsh --user=jpl --database=leetcode --sql --table --execute="SELECT * FROM Solution;"
 
 # Compare the solution to the example:
-echo Next line will be display true if the solution matches the example:
+echo The next line will display true if the solution matches the example:
 mysqlsh --user=jpl --database=leetcode --sql --json --execute="CHECKSUM TABLE Example1, Solution;"\
  | jq --slurp "last.rows
     | map(select((.Table == \"leetcode.example1\" or .Table ==\"leetcode.solution\")).Checksum)
