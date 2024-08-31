@@ -3,9 +3,7 @@ CREATE TABLE Solution AS (
 
 SELECT DISTINCT v.author_id AS id
 FROM Views v
-WHERE v.author_id IN (
-    SELECT v.viewer_id
-  )
+WHERE v.author_id = v.viewer_id
 ORDER BY id ASC
 
 );
