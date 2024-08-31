@@ -1,4 +1,5 @@
-Create table If Not Exists Tweets(tweet_id int, content varchar(50))
-Truncate table Tweets
-insert into Tweets (tweet_id, content) values ('1', 'Vote for Biden')
-insert into Tweets (tweet_id, content) values ('2', 'Let us make America great again!')
+CREATE TABLE IF NOT EXISTS Tweets(tweet_id INT, content VARCHAR(50));
+TRUNCATE TABLE Tweets;
+INSERT INTO Tweets (tweet_id, content) VALUES
+  ROW(1, 'Vote for Biden'),
+  ROW(2, 'Let us make America great again!');
