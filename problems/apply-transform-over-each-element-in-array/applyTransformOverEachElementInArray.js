@@ -3,8 +3,12 @@
  * @param {Function} fn
  * @return {number[]}
  */
-var map = function(arr, fn) {
-    
+const map = (arr, fn) => {
+    const mapped_array = [];
+    for (const [index, element] of arr.entries()) {
+        mapped_array.push(fn(element, index));
+    }
+    return mapped_array;
 };
 
 const assert = require('node:assert').strict;
