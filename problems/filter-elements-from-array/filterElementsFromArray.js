@@ -3,8 +3,12 @@
  * @param {Function} fn
  * @return {number[]}
  */
-var filter = function(arr, fn) {
-    
+const filter = (arr, fn) => {
+    const filteredArray = [];
+    for (const [index, element] of arr.entries()) {
+        fn(element, index) && filteredArray.push(element);
+    }
+    return filteredArray;
 };
 
 const assert = require('node:assert').strict;
