@@ -4,8 +4,12 @@
  * @param {number} init
  * @return {number}
  */
-var reduce = function(nums, fn, init) {
-    
+const reduce = (nums, fn, init) => {
+    let result = init;
+    for (const num of nums) {
+        result = fn(result, num)
+    }
+    return result;
 };
 
 const assert = require('node:assert').strict;
