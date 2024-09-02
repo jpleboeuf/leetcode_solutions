@@ -4,11 +4,11 @@
  * @return {number[]}
  */
 const map = (arr, fn) => {
-    const mapped_array = [];
+    const mappedArray = [];
     for (const [index, element] of arr.entries()) {
-        mapped_array.push(fn(element, index));
+        mappedArray.push(fn(element, index));
     }
-    return mapped_array;
+    return mappedArray;
 };
 
 const assert = require('node:assert').strict;
