@@ -1,9 +1,12 @@
 # Delete all tables from the database used for LeetCode:
 mysqlsh --user=jpl --database=leetcode --sql --table --file=../../utils/sql/drop-all-tables.sql
 
-# Create the SQL schema for the problem, and display the data (table names separated by comma as only parameter of this script):
+# Create the SQL schema for the problem, and display the data (table names separated by space as only parameters of this script):
 mysqlsh --user=jpl --database=leetcode --sql --table --file=sql-schema.sql
-mysqlsh --user=jpl --database=leetcode --sql --table --execute="SELECT * FROM "$1";"
+for table in "$@"
+   do
+      mysqlsh --user=jpl --database=leetcode --sql --table --execute="SELECT * FROM "$table";"
+   done
 
 # Create the example for the problem, and display the data (these are the data to retrieve):
 mysqlsh --user=jpl --database=leetcode --sql --table --file=sql-example1.sql
