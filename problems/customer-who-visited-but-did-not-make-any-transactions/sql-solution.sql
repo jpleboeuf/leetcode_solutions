@@ -1,12 +1,10 @@
 DROP TABLE IF EXISTS Solution;
 CREATE TABLE Solution AS (
 
-SELECT v.customer_id, COUNT(v.visit_id) AS count_no_trans
+SELECT v.customer_id, COUNT(*) AS count_no_trans
 FROM Visits v
-WHERE v.visit_id NOT IN (
-    SELECT DISTINCT t.visit_id
-    FROM Transactions t
-)
-GROUP BY v.customer_id
+LEFT JOIN Transactions t ON t.visit_id = v.visit_id
+WHERE t.visit_id IS NULL
+GROUP BY customer_id
 
 );
