@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS Example1 (id INT);
+TRUNCATE TABLE Example1;
+INSERT INTO Example1 (id) VALUES
+  ROW(2),
+  ROW(4);
