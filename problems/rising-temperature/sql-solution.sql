@@ -8,6 +8,6 @@ FROM (
     w.recordDate,  LAG(w.recordDate)  OVER(ORDER BY w.recordDate) AS prev_recordDate
   FROM Weather w
 ) AS temp
-WHERE (temperature > prev_temperature) AND (recordDate - prev_recordDate) = 1
+WHERE (temperature > prev_temperature) AND TIMESTAMPDIFF(DAY, prev_recordDate, recordDate) = 1
 
 );
