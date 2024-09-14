@@ -1,13 +1,10 @@
 DROP TABLE IF EXISTS Solution;
 CREATE TABLE Solution AS (
 
-SELECT id
-FROM (
-  SELECT w.id,
-    w.temperature, LAG(w.temperature) OVER(ORDER BY w.recordDate) AS prev_temperature,
-    w.recordDate,  LAG(w.recordDate)  OVER(ORDER BY w.recordDate) AS prev_recordDate
-  FROM Weather w
-) AS temp
-WHERE (temperature > prev_temperature) AND TIMESTAMPDIFF(DAY, prev_recordDate, recordDate) = 1
+SELECT w1.id
+FROM Weather w1
+JOIN Weather w2
+ON DATEDIFF(w1.recordDate, w2.recordDate) = 1
+WHERE w1.temperature > w2.temperature
 
 );
