@@ -12,7 +12,7 @@ WITH
         GROUP BY e.student_id, e.subject_name
     )
 SELECT ssp.student_id, ssp.student_name, ssp.subject_name,
-    IFNULL(ec.attended_exams, 0) AS attended_exams
+    COALESCE(ec.attended_exams, 0) AS attended_exams
 FROM students_subjects_prod ssp
 LEFT JOIN exam_count ec USING(student_id, subject_name)
 ORDER BY ssp.student_id, ssp.subject_name
