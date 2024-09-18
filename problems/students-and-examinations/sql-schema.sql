@@ -1,24 +1,27 @@
-Create table If Not Exists Students (student_id int, student_name varchar(20))
-Create table If Not Exists Subjects (subject_name varchar(20))
-Create table If Not Exists Examinations (student_id int, subject_name varchar(20))
-Truncate table Students
-insert into Students (student_id, student_name) values ('1', 'Alice')
-insert into Students (student_id, student_name) values ('2', 'Bob')
-insert into Students (student_id, student_name) values ('13', 'John')
-insert into Students (student_id, student_name) values ('6', 'Alex')
-Truncate table Subjects
-insert into Subjects (subject_name) values ('Math')
-insert into Subjects (subject_name) values ('Physics')
-insert into Subjects (subject_name) values ('Programming')
-Truncate table Examinations
-insert into Examinations (student_id, subject_name) values ('1', 'Math')
-insert into Examinations (student_id, subject_name) values ('1', 'Physics')
-insert into Examinations (student_id, subject_name) values ('1', 'Programming')
-insert into Examinations (student_id, subject_name) values ('2', 'Programming')
-insert into Examinations (student_id, subject_name) values ('1', 'Physics')
-insert into Examinations (student_id, subject_name) values ('1', 'Math')
-insert into Examinations (student_id, subject_name) values ('13', 'Math')
-insert into Examinations (student_id, subject_name) values ('13', 'Programming')
-insert into Examinations (student_id, subject_name) values ('13', 'Physics')
-insert into Examinations (student_id, subject_name) values ('2', 'Math')
-insert into Examinations (student_id, subject_name) values ('1', 'Math')
+CREATE TABLE IF NOT EXISTS Students (student_id INT, student_name VARCHAR(20));
+CREATE TABLE IF NOT EXISTS Subjects (subject_name VARCHAR(20));
+CREATE TABLE IF NOT EXISTS Examinations (student_id INT, subject_name VARCHAR(20));
+TRUNCATE TABLE Students;
+INSERT INTO Students (student_id, student_name) VALUES
+  ROW( 1, 'Alice'),
+  ROW( 2, 'Bob'),
+  ROW(13, 'John'),
+  ROW( 6, 'Alex');
+TRUNCATE TABLE Subjects;
+INSERT INTO Subjects (subject_name) VALUES
+  ROW('Math'),
+  ROW('Physics'),
+  ROW('Programming');
+TRUNCATE TABLE Examinations;
+INSERT INTO Examinations (student_id, subject_name) VALUES
+  ROW( 1, 'Math'),
+  ROW( 1, 'Physics'),
+  ROW( 1, 'Programming'),
+  ROW( 2, 'Programming'),
+  ROW( 1, 'Physics'),
+  ROW( 1, 'Math'),
+  ROW(13, 'Math'),
+  ROW(13, 'Programming'),
+  ROW(13, 'Physics'),
+  ROW( 2, 'Math'),
+  ROW( 1, 'Math');
