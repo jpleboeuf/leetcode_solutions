@@ -1,1 +1,9 @@
-# Write your MySQL query statement below
+DROP TABLE IF EXISTS Solution;
+CREATE TABLE Solution AS (
+
+SELECT e.name, b.bonus
+FROM Employee e
+LEFT JOIN Bonus b USING(empId)
+WHERE b.bonus < 1000 OR b.bonus IS NULL
+
+);
