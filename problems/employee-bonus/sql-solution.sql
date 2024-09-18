@@ -4,6 +4,6 @@ CREATE TABLE Solution AS (
 SELECT e.name, b.bonus
 FROM Employee e
 LEFT JOIN Bonus b USING(empId)
-WHERE b.bonus < 1000 OR b.bonus IS NULL
+WHERE IFNULL(b.bonus, 0) < 1000
 
 );
